@@ -1,0 +1,17 @@
+trigger:
+  - main  # Specify the branch name to trigger the pipeline automatically when there are changes
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UseDotNet@2  # Example task for a .NET project; change based on your project type
+    inputs:
+      packageType: 'sdk'
+      version: '5.x'
+
+  - script: dotnet build  # Builds the project
+    displayName: 'Build Project'
+
+  - script: dotnet test  # Runs tests if you have them
+    displayName: 'Run Tests'
